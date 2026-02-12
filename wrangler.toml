@@ -14,3 +14,6 @@ crons = ["*/1 * * * *"]
 
 [vars]
 NODE_ENV = "production"
+
+[observability]
+enabled = true
