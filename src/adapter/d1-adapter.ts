@@ -35,8 +35,14 @@ export class D1Adapter implements DatabaseAdapter {
     return callback();
   }
 
-  async exec(sql: string): Promise<void> {
-    await this.db.exec(sql);
+   async exec(sql: string): Promise<void> {
+    const statements = sql
+      .split(";")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    for (const stmt of statements) {
+      await this.db.prepare(stmt).run();
+    }
   }
 
   async close(): Promise<void> {
