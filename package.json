@@ -1,0 +1,18 @@
+{
+  "name": "here-goes-nothing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler d1 migrations apply DB --remote && wrangler deploy"
+  },
+  "dependencies": {
+    "@fileverse/api": "latest",
+    "hono": "^4.7.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "typescript": "^5.4.5",
+    "wrangler": "^3.99.0"
+  }
+}

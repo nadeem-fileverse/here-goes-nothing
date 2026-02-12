@@ -1,0 +1,16 @@
+name = "here-goes-nothing"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "fileverse-db"
+database_id = "60c2b5c1-6eb4-47a6-9aee-ee07a97ac42b"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["*/1 * * * *"]
+
+[vars]
+NODE_ENV = "production"
