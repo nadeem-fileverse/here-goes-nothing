@@ -38,10 +38,16 @@ export class D1Adapter implements DatabaseAdapter {
    async exec(sql: string): Promise<void> {
     const statements = sql
       .split(";")
-      .map((s) => s.trim())
+      .map((s) => s.replace(/--.*$/gm, "").trim())
       .filter(Boolean);
     for (const stmt of statements) {
-      await this.db.prepare(stmt).run();
+      try {
+        await this.db.prepare(stmt).run();
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : "";
+        if (!msg.includes("duration")) throw err;
+        console.log(err);
+      }
     }
   }
 
